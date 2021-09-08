@@ -58,7 +58,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: recipe-app-api-proxy
-        IMAGE_TAG: dev
+        IMAGE_TAG: proxy:dev
 #         IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
