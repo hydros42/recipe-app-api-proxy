@@ -23,6 +23,14 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Build feature branch images 
+      if: ${{ startsWith(github.ref, 'refs/heads/feature') }}
+      id: build-image-feature
+      run: |
+        # Build a docker container and
+        docker build -t proxy .
+        echo "::set-output name=image::proxy"
+
     - name: Build, tag, and push dev images to Amazon ECR
       if: ${{ github.ref == 'refs/heads/main' }}
       id: build-image-dev
