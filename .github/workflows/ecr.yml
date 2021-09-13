@@ -60,7 +60,7 @@ jobs:
         # push it to ECR so that it can
         # be deployed to ECS.
         # $(echo $GITHUB_REF | sed 's/-release//')
-        export TAGGED_ECR_REPO=$(echo $GITHUB_REF | sed 's/-release//')
+        export TAGGED_ECR_REPO=$(echo $GITHUB_REF | sed 's/refs\/tags\///')
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$TAGGED_ECR_REPO
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$TAGGED_ECR_REPO
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$TAGGED_ECR_REPO"
